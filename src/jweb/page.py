@@ -6,7 +6,6 @@
 
 from jinja2 import Environment, FileSystemLoader
 from jweb.navigation import Navigation
-from jweb.settings import TEMPLATE_DIR
 
 class Page:
 
@@ -17,13 +16,13 @@ class Page:
     NAV_MAIN = 'main'
     NAV_FOOTER = 'footer'
 
-    DEF_TPL = 'default/default.j2'
-    SOCIAL_MEDIA_TPL = 'default/social_media.j2'
-    SOCIAL_MEDIA_HEADER_TPL = 'default/social_media_header.j2'
+    DEF_TPL = 'default.j2'
+    SOCIAL_MEDIA_TPL = 'social_media.j2'
+    SOCIAL_MEDIA_HEADER_TPL = 'social_media_header.j2'
 
 
-    def __init__(self, page, config, page_type=PTYPE_MAIN, params={}):
-        self.tpl_env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
+    def __init__(self, base_dir, page, config, page_type=PTYPE_MAIN, params={}):
+        self.tpl_env = Environment(loader=FileSystemLoader(base_dir.joinpath('templates')))
         self.page = page
         self.pages = config.get('pages', [])
         self.social_media = config.get('social_media', {})

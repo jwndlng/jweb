@@ -5,7 +5,7 @@
 
 class Navigation:
 
-    TEMPLATE = 'default/nav.j2'
+    TEMPLATE = 'nav.j2'
 
     def __init__(self, env, pages):
         self._env = env

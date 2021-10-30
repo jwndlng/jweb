@@ -1,9 +1,0 @@
-<div id="{{name}}Navigation" class="navbar-start">
-{%- for node in nodes: -%}
-    {%- if node.is_active -%}
-    <div class="navbar-item is-active"><span class="is-primary button">{{node.name}}</span></div>
-    {%- else -%}
-    <a class="navbar-item" href="{{node.href}}"><span class="button is-white">{{node.name}}</span></a>
-    {%- endif -%}
-{%- endfor -%}
-</div>
