@@ -1,0 +1,65 @@
+{%- extends "base.j2" -%}
+
+{%- block title -%}{{title}}{%- endblock -%}
+
+{%- block head -%}
+{%- endblock -%}
+
+{%- block body -%}
+
+{%- block header -%}
+<header class="container is-desktop">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="index.html">
+        jwndlng.github.io
+        </a>
+
+        <a role="button" class="navbar-burger mb-5" aria-label="menu" aria-expanded="false" data-target="navbar-main">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        </a>
+    </div>
+    <div id="navbar-main" class="navbar-menu">
+    {{print_main_navigation}}
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          {{print_social_media_header}}
+        </div>
+      </div>
+    </div>
+    </div>
+    </nav>
+</header>
+{% endblock %}
+
+
+{%- block content -%}
+<div id="main" class="container is-desktop">
+    <h1 class="title is-1">{{title}}</h1>
+    <div class="content">
+      {{ print_content }}
+    </div>
+</div>
+{%- endblock %}
+
+{% block footer -%}
+<section class="hero is-small is-primary">
+  <div class="hero-body container is-desktop has-text-centered buttons">
+    {{print_social_media}}
+  </div>
+</section>
+<footer class="footer">
+    <div class="level container is-desktop has-text-centered">
+        <div class="level-item copyright">&copy; 2021 - jwndlng.github.io</div>
+        <div class="level-item">
+        {{print_foot_navigation}}
+        </div>
+    </div>
+</footer>
+{%- endblock -%}
+
+{%- endblock -%}

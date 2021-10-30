@@ -1,0 +1,6 @@
+{% for media in social_media: %}
+<a href="{{social_media[media].href}}" class="button is-medium is-{{media}} is-black-primary">
+    <span class="icon"><i class="fab fa-lg fa-{{media}}"></i></span>
+    <span>{{social_media[media].title}}</span>
+</a>
+{% endfor %}
