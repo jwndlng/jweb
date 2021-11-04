@@ -11,7 +11,7 @@ class Navigation:
         self._env = env
         self._pages = pages
 
-    def render(self, name, tpl_file=None):
+    def render(self, name, current_page, tpl_file=None):
 
         if tpl_file is None:
             tpl_file = self.TEMPLATE
@@ -24,7 +24,7 @@ class Navigation:
                 'name': page['name'],
                 'is_active': False
             }
-            if page['name'] == self.page['name']:
+            if page['name'] == current_page:
                 node['is_active'] = True
             nodes.append(node)
         

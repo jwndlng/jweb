@@ -22,7 +22,7 @@ class Page:
 
 
     def __init__(self, base_dir, page, config, page_type=PTYPE_MAIN, params={}):
-        self.tpl_env = Environment(loader=FileSystemLoader(base_dir.joinpath('templates')))
+        self._env = Environment(loader=FileSystemLoader(base_dir.joinpath('templates')))
         self.page = page
         self.pages = config.get('pages', [])
         self.social_media = config.get('social_media', {})
@@ -62,7 +62,7 @@ class Page:
 
     def render(self):
         params = self.get_params()
-        tpl = self.tpl_env.get_template(self.DEF_TPL)
+        tpl = self._env.get_template(self.DEF_TPL)
         return tpl.render(**params)
 
     def render_content(self):
@@ -75,15 +75,15 @@ class Page:
                 return self.render_article()
 
     def render_overview(self):
-        tpl = self.tpl_env.get_template('page_default.j2')
+        tpl = self._env.get_template('page_default.j2')
         return tpl.render(content=self.content)
 
     def render_article_overview(self):
-        tpl = self.tpl_env.get_template('page_article_overview.j2')
+        tpl = self._env.get_template('page_article_overview.j2')
         return tpl.render(content=self.content)
 
     def render_article(self):
-        tpl = self.tpl_env.get_template('page_article_detail.j2')
+        tpl = self._env.get_template('page_article_detail.j2')
         return tpl.render(content=self.content)
 
     def render_nav(self, name, pages):
@@ -93,7 +93,7 @@ class Page:
         :returns: rendered html template as string
         """
         nav = Navigation(self._env, pages)
-        return nav.render()
+        return nav.render(name, self.page['name'])
 
     def render_social_media(self, tpl_file=None):
 
@@ -101,6 +101,6 @@ class Page:
             tpl_file = self.SOCIAL_MEDIA_TPL
 
         # read template
-        tpl = self.tpl_env.get_template(tpl_file)
+        tpl = self._env.get_template(tpl_file)
         # render
         return tpl.render(social_media=self.social_media)
